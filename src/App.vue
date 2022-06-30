@@ -4,9 +4,11 @@ import headNav from "./components/headNav.vue"; //头部导航
 </script>
 
 <template>
-  <div id="id">
-    <headNav></headNav>
-  </div>
+
+  <headNav></headNav>
+   <router-view>
+    <!-- HelloWorld -->
+  </router-view>
 </template>
 
 <style>
