@@ -6,18 +6,20 @@
       <div class="aside">
         <h3>再度重相逢-Blog</h3>
         <p>白日依山尽,黄河入海流。 欲穷千里目，更上一层楼。</p>
-        <router-link :to="{ path: 'home' }"> Enter Blog</router-link>
+        <router-link to="/home"> Enter Blog</router-link>
       </div>
 
       <img src="../assets/img/down.png" alt="再度重相逢" class="down" />
     </div>
+
+    <div class="type"></div>
   </div>
 </template>
 
 <style lang="less" scoped>
 #index {
   .section {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: #151515;
     background-image: url("../assets/img/section.png");

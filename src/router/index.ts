@@ -49,16 +49,7 @@ router.beforeEach((to, from, next) => {
 })
 // 全局后置守卫
 router.afterEach((to, from) => {
-    enum Color {
-        Red,
-        Green,
-        Blue
-    }
 
-    // 枚举数值默认从0开始依次递增
-    // 根据特定的名称得到对应的枚举数值
-    let myColor: Color = Color.Green  // 0
-    console.log(myColor, Color.Red, Color.Blue)
 
 })
 export default router
