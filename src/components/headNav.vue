@@ -1,13 +1,23 @@
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
+const router: Array = ref([
+  { path: "/", title: "个人首页" },
+  { path: "/project", title: "项目记录" },
+  { path: "/question", title: "问题记录" },
+]);
 </script>
 <template>
   <header>
     <div class="mainbox">
       <div class="logo">再度重相逢</div>
       <div class="nav">
-        <router-link :to="{ path: '/' }"> 个人首页</router-link>
-        <router-link :to="{ path: '/project' }"> 项目记录</router-link>
-        <router-link :to="{ path: '/question' }">问题记录 </router-link>
+        <router-link
+          :to="{ path: item.path }"
+          v-for="(item, index) in router"
+          :key="index"
+        >
+          {{ item.title }}</router-link
+        >
       </div>
     </div>
   </header>
@@ -28,11 +38,17 @@ header {
     justify-content: space-between;
     .nav {
       display: flex;
+      height: 100%;
       a {
-        padding: 0 20px;
-        margin-right: 20px;
+        height: 100%;
+        line-height: 55px;
+        margin-right: 40px;
+
         &:last-child {
           margin-right: 0;
+        }
+        &.router-link-active {
+          border-bottom: 3px solid #000b23;
         }
       }
     }
