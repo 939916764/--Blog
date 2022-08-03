@@ -3,12 +3,42 @@
     <div class="mainbox">
       <div class="footer-top">
         <dl>
-          <dt>在读重相逢的个人微博</dt>
-          <dd></dd>
+          <dt>再度重相逢的个人博客</dt>
+          <dd>
+            <span>
+              <i><img src="../assets/img/address.png" alt="" /></i>
+              地址：北京东城区</span
+            >
+
+            <span>
+              <i><img src="../assets/img/qq.png" alt="" /></i>
+              QQ：939916764</span
+            >
+
+            <span>
+              <i><img src="../assets/img/email.png" alt="" /></i>
+              邮箱：939916764@qq.com</span
+            >
+          </dd>
         </dl>
         <dl>
           <dt>相关链接</dt>
-          <dd></dd>
+          <dd>
+            <span>
+              <i><img src="../assets/img/address.png" alt="" /></i>
+              地址：北京东城区</span
+            >
+
+            <span>
+              <i><img src="../assets/img/qq.png" alt="" /></i>
+              QQ：939916764</span
+            >
+
+            <span>
+              <i><img src="../assets/img/email.png" alt="" /></i>
+              邮箱：939916764@qq.com</span
+            >
+          </dd>
         </dl>
         <dl>
           <dt>联系我</dt>

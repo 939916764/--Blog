@@ -5,11 +5,9 @@
     <div class="mainbox">
       <div class="logo">再度重相逢</div>
       <div class="nav">
-        <ul>
-          <li>个人主页</li>
-          <li>项目记录</li>
-          <li>问题记录</li>
-        </ul>
+        <router-link :to="{ path: '/' }"> 个人首页</router-link>
+        <router-link :to="{ path: '/project' }"> 项目记录</router-link>
+        <router-link :to="{ path: '/question' }">问题记录 </router-link>
       </div>
     </div>
   </header>
@@ -28,15 +26,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    ul{
-        display: flex;
-        li{
-            padding: 0 20px;
-            margin-right: 20px;
-            &:last-child{
-                margin-right: 0;
-            }
+    .nav {
+      display: flex;
+      a {
+        padding: 0 20px;
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0;
         }
+      }
     }
   }
 }
