@@ -14,23 +14,27 @@ interface BlogListData {
 /**
  * 获取博客列表 - 接口响应数据
  */
-interface BlogListResponse {
 
+
+export interface UserData {
+  author: string,
+  content: string,
+  createTime: string,
+  id: number,
+  img: string,
+  title: string,
+}
+interface BlogListResponse {
+  [x: string]: number | string | [UserData];
   code: number;
-  data: [{
-    author: string,
-    content: string,
-    createTime: string,
-    id: number,
-    img: string,
-    title: string,
-  }];
+  data: [UserData];
   message: string
 }
 
 interface BlogDetailData {
   id: number
 }
+
 interface BlogDetailResponse {
 
   code: number;

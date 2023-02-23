@@ -19,6 +19,8 @@ router.get('/list', function (req, res, next) {
 
   } else if (req.query.type == '') {
     sql = `select * from blogList ORDER BY id DESC  limit  ${req.query.pageSize} offset  ${num} `
+  } else if (req.query.type == undefined) {
+    sql = `select * from blogList ORDER BY id DESC  limit  ${req.query.pageSize} offset  ${num} `
   } else {
     sql = `select * from blogList where type = '${req.query.type}'  ORDER BY id DESC  limit  ${req.query.pageSize} offset  ${num} `
   }

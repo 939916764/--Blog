@@ -53,10 +53,10 @@ const routes: Array<RouteRecordRaw> = [
             show: true,
 
         },
-        component: () => import('@/views/project/index.vue'),
+        component: () => import('@/views/question/index.vue'),
     },
     {
-        path: '/detail',
+        path: '/detail/:id',
         meta: {
             title: '再度重相逢的个人博客-详情页',
             show: true,

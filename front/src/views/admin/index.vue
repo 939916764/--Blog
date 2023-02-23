@@ -171,12 +171,30 @@ const confirm = (formEl: FormInstance | undefined) => {
         FormApi.formUpdate(form).then(res => {
           ElMessage.success(res.message)
           dialogFormVisible.value = !dialogFormVisible.value
+          const newform = {
+            author: '再度重相逢',
+            content: '',
+            img: '',
+            title: '',
+            type: '',
+            id: '',
+          }
+          form = Object.assign(form, newform)
           getBlogList()
         })
       } else {
         FormApi.formInsert(form).then(res => {
           ElMessage.success(res.message)
           dialogFormVisible.value = !dialogFormVisible.value
+          const newform = {
+            author: '再度重相逢',
+            content: '',
+            img: '',
+            title: '',
+            type: '',
+            id: '',
+          }
+          form = Object.assign(form, newform)
           getBlogList()
         })
       }

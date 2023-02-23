@@ -89,6 +89,12 @@
         margin-top: 50px;
         border-radius: 8px;
         overflow: hidden;
+        cursor: pointer;
+        border: 1px solid rgba(238, 238, 238, 1);
+
+        &:hover {
+          box-shadow: 0px 2px 30px 0px rgb(18 14 0 / 8%);
+        }
 
         &:last-child {
           margin-right: 0;

@@ -32,16 +32,23 @@
 
 <script lang="ts" setup>
 import { toRefs, onMounted, reactive } from "vue";
-import { BlogListApi, UserData } from "../../api/index"
+import { BlogListApi } from "../../api/index"
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus'
 
-interface Data {
-  data: [UserData];
+interface Userdata {
+  data: [{
+    author: string,
+    content: string,
+    createTime: string,
+    id: number,
+    img: string,
+    title: string,
+  }];
 }
 
 const router = useRouter();
-let list = reactive<Data>({
+let list = reactive<Userdata>({
   data: [{
     id: 1,
     author: '1',

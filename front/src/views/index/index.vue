@@ -14,13 +14,12 @@
     <div class="type mainbox">
       <h3>Question</h3>
       <div class="row">
-        <dl v-for="(item, index) in list.data" :key="item.id">
-          <dt><img v-imgLazy="`https://edu.yjk.cn/storage/course/img/20220718/72b3ebad302745e29cbd400e87367295.png`"
-              alt="" /></dt>
+        <dl v-for="(item, index) in list.data" :key="item.id" @click="openDetail(item.id)">
+          <dt><img v-imgLazy="item.img" alt="再度重相逢-Blog" /></dt>
           <dd>
             <h4>{{ item.title }}</h4>
             <div class="date">{{ item.createTime }}</div>
-            <p>{{ item.content }}</p>
+            <p v-html="item.content"></p>
           </dd>
         </dl>
       </div>
@@ -62,6 +61,7 @@
 import { ref, onMounted, reactive } from "vue";
 import { BlogListApi } from "@/api/index"
 import Form from "@/components/loginForm.vue"
+import { useRouter } from 'vue-router';
 interface BlogListResponse {
   author: string,
   content: string,
@@ -74,7 +74,7 @@ interface Userdata {
   data: [BlogListResponse];
 }
 
-
+const router = useRouter();
 const showForm = ref();
 const active = ref(false);
 let list = reactive<Userdata>({
@@ -91,7 +91,6 @@ let list = reactive<Userdata>({
 // 问题记录
 const getBlogList = async () => {
   const res = await BlogListApi.getList({
-    type: '1',
     page: 1,
     pageSize: 3,
   })
@@ -108,13 +107,16 @@ const openLogin = () => {
   showForm.value.toggle();
 }
 
-
+const openDetail = (id: number) => {
+  router.push(`/detail/${id}`)
+}
 
 
 
 //生命周期
 onMounted(() => {
   getBlogList();
+
 
 });
 
