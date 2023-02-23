@@ -22,9 +22,8 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '再度重相逢的个人博客-个人主页',
             show: false,
-
         },
-        component: () => import('../views/index.vue'),
+        component: () => import('@/views/index/index.vue'),
 
     },
     {
@@ -34,7 +33,17 @@ const routes: Array<RouteRecordRaw> = [
             show: true,
 
         },
-        component: () => import('../views/project.vue'),
+        component: () => import('@/views/project/index.vue'),
+
+    },
+    {
+        path: '/admin',
+        meta: {
+            title: '再度重相逢的个人博客-后台',
+            show: true,
+
+        },
+        component: () => import('@/views/admin/index.vue'),
 
     },
     {
@@ -44,9 +53,17 @@ const routes: Array<RouteRecordRaw> = [
             show: true,
 
         },
-        component: () => import('../views/question.vue'),
-
+        component: () => import('@/views/project/index.vue'),
     },
+    {
+        path: '/detail',
+        meta: {
+            title: '再度重相逢的个人博客-详情页',
+            show: true,
+        },
+        component: () => import('@/views/detail/index.vue'),
+    },
+
 ]
 
 /**

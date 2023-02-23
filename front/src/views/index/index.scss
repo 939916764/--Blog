@@ -1,114 +1,9 @@
-<template>
-  <div id="index">
-    <div class="section">
-      <div class="aside">
-        <h3>再度重相逢-Blog</h3>
-        <p>白日依山尽,黄河入海流。 欲穷千里目，更上一层楼。</p>
-        <router-link to="/home"> Enter Blog</router-link>
-      </div>
-
-      <img src="../assets/img/down.png" alt="再度重相逢" class="down" />
-      <canvas id="myCanvas"></canvas>
-    </div>
-
-    <div class="type mainbox">
-      <h3>问题记录</h3>
-      <div class="row">
-        <dl v-for="(item, index) in list.data" :key="item.id">
-          <dt><img src="../assets/img/1.png" alt="" /></dt>
-          <dd>
-            <h4>{{ item.title }}</h4>
-            <div class="date">{{ item.createTime }}</div>
-            <p>{{ item.content }}</p>
-          </dd>
-        </dl>
-      </div>
-    </div>
-
-    <div class="sectionBottom">
-      <div class="row">
-        <router-link :to="{ path: '/project' }" class="button">
-          项目记录</router-link>
-        <router-link :to="{ path: '/question' }" class="button">问题记录
-        </router-link>
-      </div>
-    </div>
-
-    <div class="indexBottom mainbox">
-      <h3>再度重相逢个人博客</h3>
-      <p>希望我们每一天都有糖吃</p>
-    </div>
-
-    <div class="menu" @click="menuClick" :class="active ? 'active' : ''">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="poper" v-if="active">
-      <div class="nav">
-        <router-link :to="{ path: '/' }"> 个人首页</router-link>
-        <router-link :to="{ path: '/project' }"> 项目记录</router-link>
-        <router-link :to="{ path: '/question' }">问题记录 </router-link>
-      </div>
-    </div>
-  </div>
-</template>
-<script lang="ts" setup>
-import { ref, onMounted, reactive } from "vue";
-import { BlogListApi } from "@/api/index"
-
-interface BlogListResponse {
-  author: string,
-  content: string,
-  createTime: string,
-  id: number,
-  img: string,
-  title: string,
-}
-interface Userdata {
-  data: [BlogListResponse];
-}
-
-const active = ref(false);
-let list = reactive<Userdata>({
-  data: [{
-    id: 1,
-    author: '1',
-    content: '1',
-    createTime: '1',
-    img: '1',
-    title: '1',
-  }]
-});
-
-const getBlogList = async () => {
-  const res = await BlogListApi.getList({
-    type: 1,
-    page: 1,
-    pageSize: 3,
-  })
-  list = Object.assign(list.data, res.data)
-  console.log(list)
-}
-function menuClick(): void {
-  active.value = !active.value;
-}
-
-//生命周期
-onMounted(() => {
-  getBlogList();
-});
-
-</script>
-
-<style lang="less" scoped>
 #index {
   .section {
     width: 100%;
     height: 100vh;
     background-color: #151515;
-    background-image: url("../assets/img/section.png");
+    background-image: url("@/assets/img/section.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -121,18 +16,18 @@ onMounted(() => {
       align-items: center;
       width: 100%;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-45%);
 
       h3 {
         color: #fff;
-        font-size: 28px;
+        font-size: 56px;
         margin-bottom: 20px;
       }
 
       p {
         color: #fff;
-        font-size: 16px;
-        letter-spacing: 10px;
+        font-size: 28px;
+
         margin-bottom: 40px;
       }
 
@@ -140,7 +35,7 @@ onMounted(() => {
         display: block;
         padding: 0 18px;
         border-radius: 4px;
-        background-color: #1e9fff;
+        background-color: #ffcf60;
         height: 38px;
         line-height: 38px;
         color: #fff;
@@ -155,6 +50,8 @@ onMounted(() => {
       right: 0;
       bottom: 20px;
       margin: auto;
+
+      animation: arrow 2s linear infinite;
     }
   }
 
@@ -190,6 +87,8 @@ onMounted(() => {
         width: 32%;
         margin-right: 1%;
         margin-top: 50px;
+        border-radius: 8px;
+        overflow: hidden;
 
         &:last-child {
           margin-right: 0;
@@ -198,6 +97,11 @@ onMounted(() => {
         dt {
           height: 244px;
           overflow: hidden;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+          }
         }
 
         dd {
@@ -231,7 +135,7 @@ onMounted(() => {
     overflow: hidden;
     width: 100%;
     padding: 200px 0;
-    background-image: url("../assets/img/1.png");
+    background-image: url("@/assets/img/1.png");
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -265,7 +169,7 @@ onMounted(() => {
       margin-bottom: 20px;
     }
 
-    p {}
+
   }
 
   .menu {
@@ -321,7 +225,7 @@ onMounted(() => {
   }
 
   .poper {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     position: fixed;
     left: 0;
     right: 0;
@@ -331,13 +235,13 @@ onMounted(() => {
 
     &::before {
       content: "";
-      width: 60%;
+      width: 50%;
       height: 100%;
-      background: #fff;
+
       position: fixed;
       top: 0;
       z-index: 11;
-      background-image: linear-gradient(46deg, #fff, #f1f2f0);
+      background-image: linear-gradient(46deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
       right: 0;
       transform: skew(-12deg) translateX(40%);
     }
@@ -347,8 +251,8 @@ onMounted(() => {
       z-index: 222;
       top: 0;
       bottom: 0;
-      right: 0;
-
+      right: 55px;
+      text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -357,12 +261,13 @@ onMounted(() => {
         padding: 20px;
         font-size: 20px;
         position: relative;
+        color: #fff;
 
         &:hover {
-          color: #000b23;
+          color: #fff;
 
           &:before {
-            background-color: #000b23;
+            background-color: #fff;
             right: 0;
           }
         }
@@ -383,5 +288,53 @@ onMounted(() => {
       }
     }
   }
+
+
+  /deep/.el-overlay {
+    .el-dialog {
+      background-color: #3b2a19;
+      padding: 40px;
+
+      .el-dialog__headerbtn:focus .el-dialog__close,
+      .el-dialog__headerbtn:hover .el-dialog__close {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+
+    .el-dialog__body {
+      padding: 40px 20px 0;
+    }
+
+    .el-dialog__title {
+      font-size: 40px;
+      margin: 15px 0 20px 0;
+      letter-spacing: 0.05em;
+      color: #ffcf60;
+      font-weight: 700;
+
+    }
+
+  }
+
+
+
 }
-</style>
+
+@keyframes arrow {
+
+
+
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, 10px);
+  }
+
+
+
+  100% {
+    transform: translate(0, 0);
+  }
+}

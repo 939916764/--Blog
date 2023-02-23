@@ -1,0 +1,50 @@
+#index {
+  padding: 80px 20px;
+  min-height: 60vh;
+
+  .avatar-uploader .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+
+  /deep/.avatar-uploader .el-upload {
+    border: 1px dashed var(--el-border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--el-transition-duration-fast);
+  }
+
+  .avatar-uploader .el-upload:hover {
+    border-color: var(--el-color-primary);
+  }
+
+  .el-icon.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    text-align: center;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .el-input {
+      width: 300px;
+      margin-right: 20px;
+    }
+  }
+
+  .titleText {
+
+    overflow: hidden; //超出隐藏
+    white-space: nowrap; //不换行，同一行展示
+    text-overflow: ellipsis;
+  }
+}

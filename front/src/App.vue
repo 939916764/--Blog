@@ -1,3 +1,13 @@
+
+
+<template>
+  <HeadNav v-if="$route.path != '/index'" />
+  <RouterView />
+  <Footer v-if="$route.path != '/admin'" />
+  <returnTop />
+
+  <div id="follow"></div>
+</template>
 <script setup lang="ts">
 import HeadNav from "./components/headNav.vue"; //头部导航
 import Footer from "./components/footer.vue"; //底部
@@ -17,16 +27,6 @@ onMounted(() => {
 
 
 </script>
-
-<template>
-  <HeadNav v-if="$route.path != '/index'" />
-  <RouterView />
-  <Footer />
-  <returnTop />
-
-  <div id="follow"></div>
-</template>
-
 <style>
 @import "./assets/css/base.css";
 

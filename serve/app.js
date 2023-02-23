@@ -5,11 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const cors = require('cors');//跨域
+const secretKEY = 'asdfghjkqwertyuiopcvbnm';
 var indexRouter = require('./routes/index');
 var blogRouter = require('./routes/blog');
 var usersRouter = require('./routes/user');
-
 var app = express();
+
+const { expressjwt: jwt } = require("express-jwt");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//凡是以api开头的接口都不需要解密 path里面写的是正则表达式
+app.use(jwt({ secret: secretKEY, algorithms: ["HS256"] }).unless({ path: ["/blog/list", '/user/login', '/public/images', "/blog/detail"] })) //使用express-jwt这个中间件 排除路径为api/login
 // 接口路由
 app.use('/', indexRouter);
 app.use('/blog', blogRouter);

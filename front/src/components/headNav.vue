@@ -2,23 +2,19 @@
 import { ref, onMounted } from "vue";
 
 const router = ref([
-  { path: "/", title: "个人首页" },
-  { path: "/project", title: "项目记录" },
-  { path: "/question", title: "问题记录" },
+  { path: "/", title: "index" },
+  { path: "/project", title: "project" },
+  { path: "/question", title: "question" },
 ]);
 </script>
 <template>
   <header>
     <div class="mainbox">
-      <div class="logo">再度重相逢</div>
+      <div class="logo"> <router-link to="/index">
+          再度重相逢 </router-link></div>
       <div class="nav">
-        <router-link
-          :to="{ path: item.path }"
-          v-for="(item, index) in router"
-          :key="index"
-        >
-          {{ item.title }}</router-link
-        >
+        <router-link :to="{ path: item.path }" v-for="(item, index) in router" :key="index">
+          {{ item.title }}</router-link>
       </div>
     </div>
   </header>
@@ -33,13 +29,16 @@ header {
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 5%);
   z-index: 222;
   height: 55px;
+
   .mainbox {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .nav {
       display: flex;
       height: 100%;
+
       a {
         height: 100%;
         line-height: 55px;
@@ -48,6 +47,7 @@ header {
         &:last-child {
           margin-right: 0;
         }
+
         &.router-link-active {
           border-bottom: 3px solid #000b23;
         }
