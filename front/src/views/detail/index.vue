@@ -23,8 +23,7 @@ interface BlogListResponse {
   type: string
 }
 
-const showForm = ref();
-const active = ref(false);
+
 let list = reactive<BlogListResponse>(
   {
     id: 1,
@@ -44,18 +43,6 @@ const getBlogList = async () => {
   })
   list = Object.assign(list, res.data)
 }
-
-// 菜单是否打开
-const menuClick = (): void => {
-  active.value = !active.value;
-}
-
-// 打开登录
-const openLogin = () => {
-  showForm.value.toggle();
-}
-
-
 
 
 
