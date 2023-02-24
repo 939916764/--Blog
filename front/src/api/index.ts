@@ -32,7 +32,7 @@ interface BlogListResponse {
 }
 
 interface BlogDetailData {
-  id: number
+  id: number | string | string[]
 }
 
 interface BlogDetailResponse {

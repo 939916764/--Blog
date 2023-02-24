@@ -2,7 +2,9 @@
   <main>
     <div class="content">
       <h1>{{ list.title }}</h1>
-      <span>{{ list.title }}</span><span>{{ list.author }}</span><span>{{ list.createTime }}</span>
+      <span>{{ list.type === '1' ? '项目记录' : '问题记录' }}</span><span>{{ list.author }}</span><span>{{
+        list.createTime.split('T')[0]
+      }}</span>
       <div class="line"></div>
 
       <div class="text" v-html="list.content"></div>
@@ -12,7 +14,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, reactive } from "vue";
 import { BlogListApi } from "@/api/index"
-
+import { useRouter } from 'vue-router'
 interface BlogListResponse {
   author: string,
   content: string,
@@ -23,7 +25,7 @@ interface BlogListResponse {
   type: string
 }
 
-
+const router = useRouter();
 let list = reactive<BlogListResponse>(
   {
     id: 1,
@@ -39,7 +41,7 @@ let list = reactive<BlogListResponse>(
 // 问题记录
 const getBlogList = async () => {
   const res = await BlogListApi.getdetail({
-    id: 16,
+    id: router.currentRoute.value.params.id,
   })
   list = Object.assign(list, res.data)
 }
@@ -49,6 +51,7 @@ const getBlogList = async () => {
 //生命周期
 onMounted(() => {
   getBlogList();
+  console.log()
 
 });
 

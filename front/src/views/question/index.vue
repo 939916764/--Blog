@@ -13,8 +13,6 @@
             </p>
           </div>
         </div>
-
-
       </div>
       <div class="right">
         <div class="aside">

@@ -71,12 +71,23 @@ const init = reactive({
   height: 400, //编辑器高度
   branding: false, //是否禁用“Powered by TinyMCE”
   menubar: false, //顶部菜单栏显示
+
   image_dimensions: false, //去除宽高属性
   plugins: props.plugins,  //这里的数据是在props里面就定义好了的
   toolbar: props.toolbar, //这里的数据是在props里面就定义好了的
-  font_formats: 'Arial=arial,helvetica,sans-serif; 宋体=SimSun; 微软雅黑=Microsoft Yahei; Impact=impact,chicago;', //字体
+  font_formats:
+    "宋体=宋体;仿宋=仿宋;楷体-GB2312=楷体-GB2312;黑体=黑体;微软雅黑=微软雅黑;隶书=隶书;幼圆=幼圆;Andale Mono=andale mono, monospace;Arial=arial,helvetica,sans-serif;Arial Black=arial black;Book Antiqua=book antiqua, palatino;Comic Sans MS=comic sans ms, sans-serif;Courier New=courier new,courier,monospace;Georgia=georgia, palatino;Helvetica=helvetica;Impact=impact, sans-serif;Symbol=symbol;Tahoma=tahoma, arial, helvetica, sans-serif;Terminal=terminal, monaco, monospace;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms, geneva;Verdana=verdana, geneva;Webdings=webdings;Wingdings=wingdings;sans-serif=sans-serif",
   fontsize_formats: '11px 12px 14px 16px 18px 24px 36px 48px 64px 72px', //文字大小
   // paste_convert_word_fake_lists: false, // 插入word文档需要该属性
+  external_plugins: {
+    powerpaste: "/public/tinymce/plugin.min.js",
+  },
+  powerpaste_word_import: "merge", // 参数可以是propmt, merge, clear，效果自行切换对比
+  powerpaste_html_import: "merge", // propmt, merge, clear
+  powerpaste_allow_local_images: true,
+  paste_data_images: true,
+
+
   paste_webkit_styles: "all",
   paste_merge_formats: true,
   nonbreaking_force_tab: false,

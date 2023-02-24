@@ -72,11 +72,12 @@ router.post('/newCreate', function (req, res, next) {
   const content = req.body.content;
   const author = req.body.author;
   const createTime = formatDate(new Date(), 'yy/mm/dd');
+  console.log(createTime)
   const type = req.body.type;
   const sql = `INSERT INTO bloglist (title, img, content, author, createTime, type) VALUES ('${title}','${img}','${content}','${author}','${createTime}','${type}')`;
 
   const ifToken = jwt.decrypt(req.headers.authorization)
-  console.log(req.content)
+  console.log(title, img)
   exec(sql).then(result => {
     if (!ifToken) {
       res.send({ code: 403, message: '登录过期，请重新登录' });
@@ -89,6 +90,7 @@ router.post('/newCreate', function (req, res, next) {
 
 /* 编辑博客 */
 router.post('/edit', function (req, res, next) {
+  console.log(req.body)
   const title = req.body.title;
   const img = req.body.img;
   const content = req.body.content;
