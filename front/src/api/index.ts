@@ -50,8 +50,8 @@ interface BlogDetailResponse {
 }
 
 export const BlogListApi = {
-  getList: (data: BlogListData) => get<BlogListResponse>("/blog/list", data),
-  getdetail: (data: BlogDetailData) => get<BlogDetailResponse>("/blog/detail", data),
+  getList: (data: BlogListData) => get<BlogListResponse>("/api/blog/list", data),
+  getdetail: (data: BlogDetailData) => get<BlogDetailResponse>("/api/blog/detail", data),
 }
 
 
@@ -75,7 +75,7 @@ interface LoginResponse {
 
 
 export const LoginApi = {
-  login: (params: LoginData) => post<LoginResponse>("/user/login", params),
+  login: (params: LoginData) => post<LoginResponse>("/api/user/login", params),
 }
 
 
@@ -132,9 +132,9 @@ interface formDelResponse {
   message: string
 }
 export const FormApi = {
-  formInsert: (params: FormInsertData) => post<FormResponse>("/user/newCreate", params),
-  formUpdate: (params: FormUpadteData) => post<FormUpdateResponse>("/user/edit", params),
-  formDel: (params: formDelData) => post<formDelResponse>("/user/del", params),
+  formInsert: (params: FormInsertData) => post<FormResponse>("/api/user/newCreate", params),
+  formUpdate: (params: FormUpadteData) => post<FormUpdateResponse>("/api/user/edit", params),
+  formDel: (params: formDelData) => post<formDelResponse>("/api/user/del", params),
 }
 
 
@@ -151,6 +151,6 @@ interface UploadtResponse {
 
 
 export const UploadApi = {
-  upload: (data: any) => post<UploadtResponse>("/user/upload", data),
+  upload: (data: any) => post<UploadtResponse>("/api/user/upload", data),
 }
 

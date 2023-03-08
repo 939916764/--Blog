@@ -55,15 +55,18 @@ let form = reactive({
   title: '',
 })
 
-toRefs(list)
+
 const getBlogList = async () => {
   const res = await BlogListApi.getList({
-    type: '2',
+    type: '1',
     page: 1,
     pageSize: 10,
     title: form.title
   })
-  list = Object.assign(list.data, res.data)
+
+  console.log(333)
+  let data = JSON.parse(JSON.stringify(res.data))
+  list.data = data
   if (res.data.length == 0) {
     ElMessage.success('没有找到，请重新输入')
   }

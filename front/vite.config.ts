@@ -8,7 +8,9 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   plugins: [
     vue(),
+
   ],
+
   resolve: {
     alias: [
       {
@@ -22,7 +24,8 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target: 'http://10.0.100.165:3030',   //代理接口
+        // target: 'http://39.105.148.140:3030/api',   //本地
+        target: 'http://39.105.148.140:3030',   //线上
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }

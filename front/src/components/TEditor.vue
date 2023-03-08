@@ -65,9 +65,9 @@ const tinymceId = ref("vue-tinymce-" + +new Date() + ((Math.random() * 1000).toF
 //定义一个对象 init初始化
 const init = reactive({
   selector: '#' + tinymceId.value, //富文本编辑器的id,
-  language_url: "/public/zh-Hans.js", // 语言包的路径，具体路径看自己的项目，文档后面附上中文js文件
+  language_url: "/zh-Hans.js", // 语言包的路径，具体路径看自己的项目，文档后面附上中文js文件
   language: "zh-Hans", //语言
-  skin_url: "/public/skins/ui/oxide", // skin路径，具体路径看自己的项目
+  skin_url: "/skins/ui/oxide", // skin路径，具体路径看自己的项目
   height: 400, //编辑器高度
   branding: false, //是否禁用“Powered by TinyMCE”
   menubar: false, //顶部菜单栏显示
@@ -80,7 +80,7 @@ const init = reactive({
   fontsize_formats: '11px 12px 14px 16px 18px 24px 36px 48px 64px 72px', //文字大小
   // paste_convert_word_fake_lists: false, // 插入word文档需要该属性
   external_plugins: {
-    powerpaste: "/public/tinymce/plugin.min.js",
+    powerpaste: "/tinymce/plugin.min.js",
   },
   powerpaste_word_import: "merge", // 参数可以是propmt, merge, clear，效果自行切换对比
   powerpaste_html_import: "merge", // propmt, merge, clear
@@ -93,7 +93,7 @@ const init = reactive({
   nonbreaking_force_tab: false,
   paste_auto_cleanup_on_paste: false,
   file_picker_types: 'file',
-  content_css: '/public/skins/content/default/content.css', //以css文件方式自定义可编辑区域的css样式，css文件需自己创建并引入
+  content_css: '/skins/content/default/content.css', //以css文件方式自定义可编辑区域的css样式，css文件需自己创建并引入
   //图片上传
   // images_upload_handler: (blobInfo: any, progress: any) => new Promise((resolve, reject) => {
 

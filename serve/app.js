@@ -24,11 +24,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //凡是以api开头的接口都不需要解密 path里面写的是正则表达式
-app.use(jwt({ secret: secretKEY, algorithms: ["HS256"] }).unless({ path: ["/blog/list", '/user/login', '/public/images', "/blog/detail"] })) //使用express-jwt这个中间件 排除路径为api/login
+app.use(jwt({ secret: secretKEY, algorithms: ["HS256"] }).unless({ path: ["/api/blog/list", '/api/user/login', '/public/images', "/api/blog/detail"] })) //使用express-jwt这个中间件 排除路径为api/login
 // 接口路由
 app.use('/', indexRouter);
-app.use('/blog', blogRouter);
-app.use('/user', usersRouter);
+app.use('/api/blog', blogRouter);
+app.use('/api/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

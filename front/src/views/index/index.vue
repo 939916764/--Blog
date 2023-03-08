@@ -14,7 +14,7 @@
     <div class="type mainbox">
       <h3>Question</h3>
       <div class="row">
-        <dl v-for="(item, index) in list.data" :key="item.id" @click="openDetail(item.id)">
+        <dl v-for="(item, index) in list.data" :key="index" @click="openDetail(item.id)">
           <dt><img v-imgLazy="item.img" alt="再度重相逢-Blog" /></dt>
           <dd>
             <h4>{{ item.title }}</h4>
@@ -94,7 +94,9 @@ const getBlogList = async () => {
     page: 1,
     pageSize: 3,
   })
-  list = Object.assign(list.data, res.data)
+  let data = JSON.parse(JSON.stringify(res.data))
+  list.data = data
+  console.log(list)
 }
 
 // 菜单是否打开

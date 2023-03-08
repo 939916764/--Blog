@@ -8,7 +8,7 @@ router.get('/list', function (req, res, next) {
   let sql = '';
   let type = req.query.type;
   let title = req.query.title
-  console.log(req.query.title, req.query.type)
+
 
   if (req.query.title) {
     if (req.query.type == '') {
@@ -27,6 +27,7 @@ router.get('/list', function (req, res, next) {
 
   exec(sql)
     .then(data => {
+      console.log(3333)
       res.send({
         code: 200,
         data: data,
@@ -38,7 +39,7 @@ router.get('/list', function (req, res, next) {
 /* 获取博客详情 */
 router.get('/detail', function (req, res, next) {
   const id = req.query.id;
-  console.log(id)
+
   const sql = `select * from blogList WHERE id = '${id}'`;
   exec(sql).then(result => {
     res.send({ code: 200, data: result[0], message: '获取成功' });

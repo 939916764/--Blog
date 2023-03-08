@@ -5,7 +5,6 @@
 
 import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-
 /**
  * 定义路由模块
   2022年6月30日21:50
@@ -79,6 +78,8 @@ const router = createRouter({
 
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
+
+    console.log(to)
     let title: any = to.meta.title;
     window.document.title = title;
     // 让页面回到顶部

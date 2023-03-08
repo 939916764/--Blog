@@ -10,16 +10,13 @@ let multer = require('multer');
 //配置上传
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log(file)
     cb(null, './public/images');//第二个参数表示文件存放位置
   },
   filename: (req, file, cb) => {
     //获取选中的文件名
     let originalName = file.originalname;
-    console.log("老名字:" + originalName);
     //存到服务器上的名字(加上当前时间毫秒数防止同名文件覆盖)
     let newName = (new Date().getTime()) + '-' + originalName;
-    console.log('保存到服务器上的name=' + newName);
     cb(null, newName);
   }
 })
@@ -72,12 +69,10 @@ router.post('/newCreate', function (req, res, next) {
   const content = req.body.content;
   const author = req.body.author;
   const createTime = formatDate(new Date(), 'yy/mm/dd');
-  console.log(createTime)
   const type = req.body.type;
   const sql = `INSERT INTO bloglist (title, img, content, author, createTime, type) VALUES ('${title}','${img}','${content}','${author}','${createTime}','${type}')`;
 
   const ifToken = jwt.decrypt(req.headers.authorization)
-  console.log(title, img)
   exec(sql).then(result => {
     if (!ifToken) {
       res.send({ code: 403, message: '登录过期，请重新登录' });
@@ -90,7 +85,6 @@ router.post('/newCreate', function (req, res, next) {
 
 /* 编辑博客 */
 router.post('/edit', function (req, res, next) {
-  console.log(req.body)
   const title = req.body.title;
   const img = req.body.img;
   const content = req.body.content;
@@ -128,7 +122,7 @@ router.post('/del', function (req, res, next) {
 router.post('/upload', upload.single('file'), function (req, res, next) {
 
   res.send({
-    code: 200, message: '上传成功', img: 'http://10.0.100.165:3030/' + req.file.destination.replace('./public', '') + '/' + req.file.filename
+    code: 200, message: '上传成功', img: 'http://39.105.148.140:3030/' + req.file.destination.replace('./public', '') + '/' + req.file.filename
   });
 });
 
