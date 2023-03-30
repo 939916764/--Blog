@@ -7,10 +7,8 @@
 //JS部分
 //在js中引入所需的主题和组件
 import tinymce from 'tinymce/tinymce'
-import 'tinymce/skins/content/default/content.css'
 import Editor from '@tinymce/tinymce-vue'
 import 'tinymce/themes/silver'
-import 'tinymce/themes/silver/theme'
 import 'tinymce/icons/default'; //引入编辑器图标icon，不引入则不显示对应图标
 import 'tinymce/models/dom' // 这里是个坑 一定要引入
 
@@ -18,9 +16,9 @@ import 'tinymce/models/dom' // 这里是个坑 一定要引入
 import "tinymce/icons/default/icons"
 // import "tinymce/plugins/image" // 插入上传图片插件
 // import "tinymce/plugins/media" // 插入视频插件
-import "tinymce/plugins/table" // 插入表格插件
-import "tinymce/plugins/lists" // 列表插件
-import "tinymce/plugins/wordcount" // 字数统计插件
+// import "tinymce/plugins/table" // 插入表格插件
+// import "tinymce/plugins/lists" // 列表插件
+// import "tinymce/plugins/wordcount" // 字数统计插件
 import "tinymce/plugins/code" // 源码
 // import "tinymce/plugins/fullscreen" //全屏
 
@@ -46,14 +44,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  plugins: {
-    type: [String, Array],
-    default: "lists  table",
-  },//必填
+  // plugins: {
+  //   type: [String, Array],
+  //   default: "lists  table",
+  // },//必填
   toolbar: {
     type: [String, Array],
     default:
-      "codesample bold italic underline alignleft aligncenter alignright alignjustify | undo redo | formatselect | fontselect | fontsizeselect | forecolor backcolor | bullist numlist outdent indent | lists link table code | removeformat ",
+      "codesample bold italic underline alignleft aligncenter alignright alignjustify | undo redo ",
   },//必填
 })
 
@@ -65,15 +63,13 @@ const tinymceId = ref("vue-tinymce-" + +new Date() + ((Math.random() * 1000).toF
 //定义一个对象 init初始化
 const init = reactive({
   selector: '#' + tinymceId.value, //富文本编辑器的id,
-  language_url: "/zh-Hans.js", // 语言包的路径，具体路径看自己的项目，文档后面附上中文js文件
-  language: "zh-Hans", //语言
   skin_url: "/skins/ui/oxide", // skin路径，具体路径看自己的项目
   height: 400, //编辑器高度
   branding: false, //是否禁用“Powered by TinyMCE”
   menubar: false, //顶部菜单栏显示
 
   image_dimensions: false, //去除宽高属性
-  plugins: props.plugins,  //这里的数据是在props里面就定义好了的
+  // plugins: props.plugins,  //这里的数据是在props里面就定义好了的
   toolbar: props.toolbar, //这里的数据是在props里面就定义好了的
   font_formats:
     "宋体=宋体;仿宋=仿宋;楷体-GB2312=楷体-GB2312;黑体=黑体;微软雅黑=微软雅黑;隶书=隶书;幼圆=幼圆;Andale Mono=andale mono, monospace;Arial=arial,helvetica,sans-serif;Arial Black=arial black;Book Antiqua=book antiqua, palatino;Comic Sans MS=comic sans ms, sans-serif;Courier New=courier new,courier,monospace;Georgia=georgia, palatino;Helvetica=helvetica;Impact=impact, sans-serif;Symbol=symbol;Tahoma=tahoma, arial, helvetica, sans-serif;Terminal=terminal, monaco, monospace;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms, geneva;Verdana=verdana, geneva;Webdings=webdings;Wingdings=wingdings;sans-serif=sans-serif",

@@ -16,16 +16,16 @@
 
     <el-table :data="list.data" style="width: 100%">
       <el-table-column prop="id" label="ID" width="100" />
-      <el-table-column prop="title" label="标题" width="200">
+      <el-table-column prop="title" label="标题" width="400">
         <template #default="scope">
           <div class="titleText" :title="scope.row.title">{{ scope.row.title }}</div>
         </template>
       </el-table-column>
-      <el-table-column prop="img" label="封面" width="200">
+      <!-- <el-table-column prop="img" label="封面" width="200">
         <template #default="scope">
           <div><img :src="scope.row.img" alt="再度重相逢-Blog" style="height:100px"></div>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column prop="author" label="作者" />
       <el-table-column prop="type" label="类型">
         <template #default="scope">
@@ -87,11 +87,13 @@
 <script lang="ts" setup>
 import { ref, onMounted, reactive, nextTick } from "vue";
 import { BlogListApi, FormApi, UploadApi } from "@/api/index"
-import { ElDialog, ElForm, ElInput, ElFormItem, FormInstance, FormRules, ElMessage, ElTable, ElTableColumn, ElButton, ElRadioGroup, ElRadio, UploadProps, ElUpload, ElIcon, ElSelect, ElOption } from 'element-plus'
+import { ElDialog, ElForm, ElInput, ElFormItem, ElMessage, ElTable, ElTableColumn, ElButton, ElRadioGroup, ElRadio, UploadProps, ElUpload, ElIcon, ElSelect, ElOption } from 'element-plus'
+
+import type { FormInstance, FormRules } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
 import { Plus } from '@element-plus/icons-vue'
 import TEditor from '@/components/TEditor.vue';
-import { UploadRequestHandler, UploadRequestOptions } from 'element-plus'
+
 
 interface BlogListResponse {
   author: string,

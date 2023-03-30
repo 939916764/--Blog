@@ -66,14 +66,15 @@ function formatDate(date, format) {
 router.post('/newCreate', function (req, res, next) {
   const title = req.body.title;
   const img = req.body.img;
-  const content = req.body.content;
+  const content = req.body.content.replaceAll("'", '"');
   const author = req.body.author;
   const createTime = formatDate(new Date(), 'yy/mm/dd');
   const type = req.body.type;
-  const sql = `INSERT INTO bloglist (title, img, content, author, createTime, type) VALUES ('${title}','${img}','${content}','${author}','${createTime}','${type}')`;
+  const sql = `INSERT INTO blogList (title, img, content, author, createTime, type) VALUES ("${title}","${img}",'${content}',"${author}","${createTime}","${type}")`;
 
   const ifToken = jwt.decrypt(req.headers.authorization)
   exec(sql).then(result => {
+    console.log(sql)
     if (!ifToken) {
       res.send({ code: 403, message: '登录过期，请重新登录' });
     } else {
@@ -90,10 +91,11 @@ router.post('/edit', function (req, res, next) {
   const content = req.body.content;
   const type = req.body.type;
   const id = req.body.id;
-  const sql = `UPDATE bloglist  SET title='${title}', img='${img}', content='${content}',  type='${type}'  WHERE id='${id}'`;
+  const sql = `UPDATE blogList  SET title='${title}', img='${img}', content='${content}', type='${type}'  WHERE id='${id}'`;
 
   const ifToken = jwt.decrypt(req.headers.authorization)
   exec(sql).then(result => {
+    console.log(sql)
     if (!ifToken) {
       res.send({ code: 403, message: '登录过期，请重新登录' });
     } else {
@@ -105,10 +107,11 @@ router.post('/edit', function (req, res, next) {
 /* 删除博客 */
 router.post('/del', function (req, res, next) {
   const id = req.body.id;
-  const sql = `DELETE FROM bloglist  WHERE id='${id}'`;
+  const sql = `DELETE FROM blogList  WHERE id='${id}'`;
 
   const ifToken = jwt.decrypt(req.headers.authorization)
   exec(sql).then(result => {
+    console.log(sql)
     if (!ifToken) {
       res.send({ code: 403, message: '登录过期，请重新登录' });
     } else {

@@ -24,7 +24,7 @@ onMounted(() => {
     pic!.style.top = y + 20 + 'px';
   })
 })
-
+// 冒泡排序
 
 </script>
 <style>
