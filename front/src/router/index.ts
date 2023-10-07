@@ -19,18 +19,25 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/index',
         meta: {
-            title: '再度重相逢的个人博客-个人主页',
-            show: false,
+            title: 'MeetAgain-Blog',
+
         },
         component: () => import('@/views/index/index.vue'),
 
     },
     {
-        path: '/project',
+        path: '/resume',
         meta: {
-            title: '再度重相逢的个人博客-项目记录',
-            show: true,
+            title: 'MeetAgain-Blog',
 
+        },
+        component: () => import('@/views/question/index.vue'),
+
+    },
+    {
+        path: '/blog',
+        meta: {
+            title: 'MeetAgain-Blog',
         },
         component: () => import('@/views/project/index.vue'),
 
@@ -38,27 +45,19 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/admin',
         meta: {
-            title: '再度重相逢的个人博客-后台',
-            show: true,
+            title: 'MeetAgain-Blog',
+
 
         },
         component: () => import('@/views/admin/index.vue'),
 
     },
-    {
-        path: '/question',
-        meta: {
-            title: '再度重相逢的个人博客-问题记录',
-            show: true,
 
-        },
-        component: () => import('@/views/question/index.vue'),
-    },
     {
         path: '/detail/:id',
         meta: {
-            title: '再度重相逢的个人博客-详情页',
-            show: true,
+            title: 'MeetAgain-Blog',
+
         },
         component: () => import('@/views/detail/index.vue'),
     },
@@ -78,8 +77,6 @@ const router = createRouter({
 
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
-
-    console.log(to)
     let title: any = to.meta.title;
     window.document.title = title;
     // 让页面回到顶部

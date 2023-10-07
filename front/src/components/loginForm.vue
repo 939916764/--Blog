@@ -306,7 +306,6 @@ defineExpose({ toggle });
     background: none;
     box-shadow: none;
 
-    background: #4f371f;
 
     .el-input__inner {
       width: 100%;

@@ -1,130 +1,70 @@
 <template>
   <div id="index">
+    <Three class="bg" />
     <div class="section">
-      <div class="aside">
-        <h3>再度重相逢-Blog</h3>
-        <p>You can enjoy a grander sight by climbing to a greater height.</p>
-        <router-link to="/project"> Enter Blog</router-link>
-      </div>
-
-      <img src="@/assets/img/down.png" alt="再度重相逢" class="down" />
-      <canvas id="myCanvas"></canvas>
-    </div>
-
-    <div class="type mainbox">
-      <h3>Question</h3>
-      <div class="row">
-        <dl v-for="(item, index) in list.data" :key="index" @click="openDetail(item.id)">
-          <dt><img v-imgLazy="item.img" alt="再度重相逢-Blog" /></dt>
-          <dd>
-            <h4>{{ item.title }}</h4>
-            <div class="date">{{ item.createTime }}</div>
-            <p v-html="item.content"></p>
-          </dd>
-        </dl>
+      <div class="mainbox">
+        <div class="aside">
+          <h1>Blog</h1>
+          <h1>MeetAgain</h1>
+          <h3>You can enjoy a grander sight by climbing to a greater height</h3>
+          <p>Record knowledge points, interesting technologies, and issues encountered during the development process</p>
+          <router-link to="/project"> Enter Blog</router-link>
+        </div>
       </div>
     </div>
-
-    <div class="sectionBottom">
-      <div class="row">
-        <router-link :to="{ path: '/project' }" class="button">
-          project</router-link>
-        <router-link :to="{ path: '/question' }" class="button">question
-        </router-link>
+    <div class="section">
+      <div class="mainbox right">
+        <div class="aside">
+          <h1>Blog</h1>
+          <h1>MeetAgain</h1>
+          <h3>You can enjoy a grander sight by climbing to a greater height</h3>
+          <p>Record knowledge points, interesting technologies, and issues encountered during the development process</p>
+        </div>
       </div>
     </div>
-
-    <div class="indexBottom mainbox">
-      <h3>再度重相逢-Blog</h3>
-      <p>I hope we have sugar every day</p>
+    <div class="section">
+      <div class="mainbox ">
+        <div class="aside">
+          <h1>Blog</h1>
+          <h1>MeetAgain</h1>
+          <h3>You can enjoy a grander sight by climbing to a greater height</h3>
+          <p>Record knowledge points, interesting technologies, and issues encountered during the development process</p>
+        </div>
+      </div>
     </div>
+    <div class="section">
+      <div class="mainbox">
+        <h3>Question</h3>
 
-    <div class="menu" @click="menuClick" :class="active ? 'active' : ''">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="poper" v-if="active">
-      <div class="nav">
-        <router-link :to="{ path: '/' }"> index</router-link>
-        <router-link :to="{ path: '/project' }"> project</router-link>
-        <router-link :to="{ path: '/question' }">question </router-link>
-        <router-link :to="{ path: '' }" @click.stop="openLogin()">login </router-link>
       </div>
     </div>
 
-    <Form ref="showForm" />
+    <div class="section">
+      <div class="mainbox columnCenter">
+        <h2>再度重相逢-Blog</h2>
+        <p>I hope we have sugar every day</p>
+      </div>
+    </div>
+
+
   </div>
 </template>
+
 <script lang="ts" setup>
-import { ref, onMounted, reactive } from "vue";
-import { BlogListApi } from "@/api/index"
-import Form from "@/components/loginForm.vue"
-import { useRouter } from 'vue-router';
-interface BlogListResponse {
-  author: string,
-  content: string,
-  createTime: string,
-  id: number,
-  img: string,
-  title: string,
-}
-interface Userdata {
-  data: [BlogListResponse];
-}
-
-const router = useRouter();
-const showForm = ref();
-const active = ref(false);
-let list = reactive<Userdata>({
-  data: [{
-    id: 1,
-    author: '1',
-    content: '1',
-    createTime: '1',
-    img: '1',
-    title: '1',
-  }]
-});
-
-// 问题记录
-const getBlogList = async () => {
-  const res = await BlogListApi.getList({
-    page: 1,
-    pageSize: 3,
-  })
-  let data = JSON.parse(JSON.stringify(res.data))
-  list.data = data
-  console.log(list)
-}
-
-// 菜单是否打开
-const menuClick = (): void => {
-  active.value = !active.value;
-}
-
-// 打开登录
-const openLogin = () => {
-  showForm.value.toggle();
-}
-
-const openDetail = (id: number) => {
-  router.push(`/detail/${id}`)
-}
-
-
-
-//生命周期
-onMounted(() => {
-  getBlogList();
-
-
-});
-
+import Three from "@/components/three.vue";
 </script>
 
 
 <style lang="less" scoped>
 @import "./index.scss";
+
+.bg {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  bottom: 0;
+  top: 0;
+}
 </style>

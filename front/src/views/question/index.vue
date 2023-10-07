@@ -1,29 +1,26 @@
 <template>
   <div class="content">
+
+
     <div class="mainbox">
-      <div class="left">
-        <div class="rowbox" v-for="item in list.data" :key="item.id" @click="openDetail(item.id)">
-          <div class="top">
-            <div class="title">[原创] {{ item.title }}</div>
-            <div class="date">{{ item.createTime }}</div>
-          </div>
-          <div class="bottom">
-            <div class="img"><img v-imgLazy="item.img" alt="再度重相逢-Blog" /></div>
-            <p class="introduce" v-html="item.content">
-            </p>
-          </div>
-        </div>
-      </div>
+
+      <div class="left"></div>
+
       <div class="right">
-        <div class="aside">
-          <div class="search">
-            <input type="text" v-model="form.title" />
-            <img src="@/assets/img/search.png" alt="" @click="getBlogList" />
-          </div>
-          <div class="type" v-for="item in list.data" :key="item.id" @click="openDetail(item.id)"><span> {{ item.title
-          }}</span></div>
-        </div>
+
+        <el-timeline>
+          <el-timeline-item :timestamp="item.time" placement="top" v-for="(item, index) in list.data" :key="index">
+            <el-card>
+              <h4>{{ item.title }}</h4>
+              <p v-html="item.introduce"></p>
+
+            </el-card>
+          </el-timeline-item>
+
+        </el-timeline>
+
       </div>
+
     </div>
   </div>
 </template>
@@ -32,58 +29,125 @@
 import { toRefs, onMounted, reactive } from "vue";
 import { BlogListApi } from "../../api/index"
 import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElTimeline, ElTimelineItem, ElCard } from 'element-plus'
 
-interface Userdata {
-  data: [{
-    author: string,
-    content: string,
-    createTime: string,
-    id: number,
-    img: string,
-    title: string,
-  }];
-}
 
-const router = useRouter();
-let list = reactive<Userdata>({
-  data: [{
-    id: 1,
-    author: '1',
-    content: '1',
-    createTime: '1',
-    img: '1',
-    title: '1',
-  }]
+
+let list = reactive({
+  data: [
+    {
+      time: '2020/6',
+      title: '广西五建',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '盈建科自动化测试系统',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '盈建科轻量化',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '盈建科桥梁',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '盈建科学堂',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '盈建科授权管理系统',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '盈建科内部工单',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '冰雪峰会h5',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '移动调查问卷',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '移动账单h5',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '移动账单h5',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '国家博物馆',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/6',
+      title: '国家大剧院管弦乐队',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/5',
+      title: '嘉法帮',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/5',
+      title: '相聚资本',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/4',
+      title: '雅迪官网',
+      introduce: '简介：1111',
+    },
+    {
+      time: '2020/2-2020/10',
+      title: '国家大剧院edm',
+      introduce: '简介：国家大剧院电子邮件营销,表格布局,每月的演出推荐,周边商品链接推荐,门票链接',
+    },
+    {
+      time: '2020/2',
+      title: '瑞思英语',
+      introduce: '地址：http://www.risecenter.com/</br>简介：jq+h5+css,引入百度地图,实现门店标记,结合省市区实现查询门店地址',
+    },
+    {
+      time: '2019/10',
+      title: '奥星官网',
+      introduce: '地址：http://www.austar.com.cn/</br>简介：jq+h5+css,20+页面,使用了animation,transform,实现特效',
+    },
+    {
+      time: '2019/7',
+      title: '北京国际体育电影周',
+      introduce: '地址：http://www.sportsfilm.cn/</br>简介：jq+h5+css,人生中第一个线上项目,有很大的满足感,很开心',
+    },
+
+  ]
 });
 let form = reactive({
   title: '',
 })
 
 
-const getBlogList = async () => {
-  const res = await BlogListApi.getList({
-    type: '2',
-    page: 1,
-    pageSize: 10,
-    title: form.title
-  })
-  let data = JSON.parse(JSON.stringify(res.data))
-  list.data = data
-  if (res.data.length == 0) {
-    ElMessage.success('没有找到，请重新输入')
-  }
-
-}
-const openDetail = (id: number) => {
-  router.push(`/detail/${id}`)
-}
-
 
 
 //生命周期
 onMounted(() => {
-  getBlogList();
+
 });
 
 </script>

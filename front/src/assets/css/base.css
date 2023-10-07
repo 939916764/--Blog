@@ -2,17 +2,11 @@
 * {
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
-
+    font-family: "Montserrat-Regular";
 }
 
-body {
-    margin: 0 !important;
-    font-size: 14px;
-    line-height: normal;
-    color: #666;
-}
+
 
 img {
     vertical-align: top;
@@ -150,7 +144,6 @@ select::-ms-expand {
 
 .mainbox {
     margin: 0 auto;
-    font-style: normal;
     width: 1400px;
     height: 100%;
 }
