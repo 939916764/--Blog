@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Bebas-Regular";
+  src: url("./Bebas-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("./Montserrat-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("./Montserrat-Medium.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat-SemiBold";
+  src: url("./Montserrat-SemiBold.otf");
+  font-weight: normal;
+  font-style: normal;
+}
