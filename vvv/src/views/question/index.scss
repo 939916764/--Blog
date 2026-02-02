@@ -1,0 +1,23 @@
+.content {
+  background-color: #000;
+  min-height: 100vh;
+  padding: 10vh 0;
+
+  .mainbox {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    min-height: 100vh;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+
+    .left {
+      width: 49%;
+    }
+
+    .right {
+      width: 49%;
+    }
+  }
+}

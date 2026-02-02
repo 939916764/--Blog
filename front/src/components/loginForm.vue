@@ -4,8 +4,8 @@
       <el-form :model="form" ref="ruleFormRef" :rules="rules">
         <el-form-item prop="account">
           <el-input v-model="form.account" autocomplete="off" />
-          <div class="styled-input__placeholder"> <span class="styled-input__placeholder-text">
-
+          <div class="styled-input__placeholder">
+            <span class="styled-input__placeholder-text">
               <span class="letter" v-for="item in Username">{{ item }}</span>
             </span>
           </div>
@@ -13,7 +13,8 @@
         </el-form-item>
         <el-form-item prop="password">
           <el-input v-model="form.password" autocomplete="off" type="password" show-password />
-          <div class="styled-input__placeholder"> <span class="styled-input__placeholder-text">
+          <div class="styled-input__placeholder">
+            <span class="styled-input__placeholder-text">
               <span class="letter" v-for="item in Password">{{ item }}</span></span>
           </div>
           <div class="styled-input__circle"></div>
@@ -34,106 +35,117 @@
           </span>
         </span>
       </button>
-
     </el-dialog>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ElDialog, ElForm, ElInput, ElFormItem, FormInstance, FormRules, ElMessage } from 'element-plus'
-import { reactive, ref, nextTick } from 'vue'
-import { LoginApi } from "@/api/index"
-import { useRouter } from 'vue-router';
+import {
+  ElDialog,
+  ElForm,
+  ElInput,
+  ElFormItem,
+  FormInstance,
+  FormRules,
+  ElMessage,
+} from "element-plus";
+import { reactive, ref, nextTick } from "vue";
+import { LoginApi } from "@/api/index";
+import { useRouter } from "vue-router";
 
-const Username = ref(['U', 's', 'e', 'r', 'n', 'a', 'm', 'e'])
-const Password = ref(['P', 'a', 's', 's', 'w', 'o', 'r', 'd'])
-const dialogFormVisible = ref(false)
+const Username = ref(["U", "s", "e", "r", "n", "a", "m", "e"]);
+const Password = ref(["P", "a", "s", "s", "w", "o", "r", "d"]);
+const dialogFormVisible = ref(false);
 const formDom = ref();
 const form = reactive({
-  account: '',
-  password: '',
-
-})
-const ruleFormRef = ref<FormInstance>()
+  account: "",
+  password: "",
+});
+const ruleFormRef = ref<FormInstance>();
 const router = useRouter();
 
 const rules = reactive<FormRules>({
-  account: [{ required: true, message: 'Please input Username', trigger: 'blur' },],
-  password: [{ required: true, message: 'Please input Password', trigger: 'blur' },],
-})
+  account: [{ required: true, message: "Please input Username", trigger: "blur" }],
+  password: [{ required: true, message: "Please input Password", trigger: "blur" }],
+});
 // 打开关闭
 const toggle = () => {
-  dialogFormVisible.value = !dialogFormVisible.value
-  textJump()
-}
+  dialogFormVisible.value = !dialogFormVisible.value;
+  textJump();
+};
 
 const submit = (formEl: FormInstance | undefined) => {
-
-
-  if (!formEl) return
+  if (!formEl) return;
   formEl.validate((valid, fields) => {
     if (valid) {
-      LoginApi.login(form).then(res => {
+      LoginApi.login(form).then((res) => {
         if (res.code === 0) {
-          ElMessage.error(res.message)
+          ElMessage.error(res.message);
         } else {
-          dialogFormVisible.value = !dialogFormVisible.value
-          sessionStorage.setItem('token', res.tokenStr)
-          router.push('/admin')
-          ElMessage.success(res.message)
+          dialogFormVisible.value = !dialogFormVisible.value;
+          sessionStorage.setItem("token", res.tokenStr);
+          router.push("/admin");
+          ElMessage.success(res.message);
         }
-      })
+      });
     } else {
-      console.log('error submit!')
+      console.log("error submit!");
     }
-  })
-}
+  });
+};
 const textJump = () => {
   nextTick(() => {
-    const inputs = document.querySelectorAll('input');
+    const inputs = document.querySelectorAll("input");
     inputs.forEach(function (el) {
       var parent: any = el!.parentNode!.parentNode!.parentNode;
-      el.addEventListener('focus', function () {
-        parent!.classList.add('filled');
-        placeholderAnimationIn(parent, true);
-      }, false);
-      el.addEventListener('blur', function () {
-        if (el.value.length) return;
-        parent!.classList.remove('filled');
-        placeholderAnimationIn(parent, false);
-      }, false);
+      el.addEventListener(
+        "focus",
+        function () {
+          parent!.classList.add("filled");
+          placeholderAnimationIn(parent, true);
+        },
+        false
+      );
+      el.addEventListener(
+        "blur",
+        function () {
+          if (el.value.length) return;
+          parent!.classList.remove("filled");
+          placeholderAnimationIn(parent, false);
+        },
+        false
+      );
     });
-  })
-}
+  });
+};
 
 function placeholderAnimationIn(parent: any, action: boolean) {
-  var act = action ? 'add' : 'remove';
-  var letters: any = parent.querySelectorAll('.letter');
+  var act = action ? "add" : "remove";
+  var letters: any = parent.querySelectorAll(".letter");
   letters = [].slice.call(letters, 0);
   if (!action) letters = letters.reverse();
-  letters.forEach(function (el: { classList: { [x: string]: (arg0: string) => void; }; }, i: number) {
+  letters.forEach(function (
+    el: { classList: { [x: string]: (arg0: string) => void } },
+    i: number
+  ) {
     setTimeout(function () {
-      var contains = parent.classList.contains('filled');
-      if (action && !contains || !action && contains) return;
-      el.classList[act]('active');
+      var contains = parent.classList.contains("filled");
+      if ((action && !contains) || (!action && contains)) return;
+      el.classList[act]("active");
     }, 50 * i);
   });
 }
 
-
 // 暴露给父组件
 defineExpose({ toggle });
-
 </script>
 
 <style lang="less" scoped>
 .el-form {
-  /deep/ .el-form-item__content {
-
+  :deep(.el-form-item__content) {
     width: 100%;
     position: relative;
     margin-bottom: 25px;
-
 
     border: 1px solid rgba(113, 83, 52, 0.6);
     border-radius: 3px;
@@ -154,8 +166,7 @@ defineExpose({ toggle });
     }
   }
 
-  /deep/.el-form-item__error {
-
+  :deep(.el-form-item__error) {
     font-size: 14px;
     line-height: 1;
     padding-top: 2px;
@@ -271,7 +282,6 @@ defineExpose({ toggle });
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-
 .styled-input__circle {
   position: absolute;
   left: 0;
@@ -284,7 +294,7 @@ defineExpose({ toggle });
 }
 
 .styled-input__circle:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 16.5px;
   top: 19px;
@@ -301,11 +311,9 @@ defineExpose({ toggle });
 }
 
 .el-input {
-
-  /deep/ .el-input__wrapper {
+  :deep(.el-input__wrapper) {
     background: none;
     box-shadow: none;
-
 
     .el-input__inner {
       width: 100%;
@@ -320,10 +328,7 @@ defineExpose({ toggle });
       letter-spacing: 0.035em;
     }
   }
-
-
 }
-
 
 .styled-input__placeholder {
   position: absolute;
@@ -337,7 +342,7 @@ defineExpose({ toggle });
   color: white;
   pointer-events: none;
 
-  /deep/ .styled-input__placeholder-text .letter {
+  :deep(.styled-input__placeholder-text .letter) {
     display: inline-block;
     vertical-align: middle;
     position: relative;
@@ -346,16 +351,10 @@ defineExpose({ toggle });
     text-shadow: 0 0 5px;
   }
 
-  /deep/.styled-input__placeholder-text .letter.active {
-
+  :deep(.styled-input__placeholder-text .letter.active) {
     animation: letterAnimIn 0.25s ease forwards;
   }
 }
-
-
-
-
-
 
 @keyframes letterAnimIn {
   0% {
@@ -395,8 +394,6 @@ defineExpose({ toggle });
     opacity: 1;
   }
 }
-
-
 
 @keyframes letterAnimOut {
   0% {

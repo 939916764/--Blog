@@ -50,8 +50,7 @@ const getBlogList = async () => {
 
 //生命周期
 onMounted(() => {
-  getBlogList();
-  console.log()
+
 
 });
 

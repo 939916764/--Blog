@@ -80,7 +80,7 @@ const openDetail = (id: number) => {
 
 //生命周期
 onMounted(() => {
-  getBlogList();
+
 });
 
 </script>

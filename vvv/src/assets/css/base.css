@@ -1,0 +1,155 @@
+/* public */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat-Regular";
+}
+
+
+
+img {
+    vertical-align: top;
+    width: 100%;
+    display: block;
+}
+
+input,
+select,
+textarea {
+    border: none;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+    font-style: normal;
+}
+
+ol,
+ul,
+li {
+    list-style: none;
+}
+
+
+video {
+    object-fit: fill;
+}
+
+/*手机端页面去除a标签点击时的蓝色边框*/
+
+a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in;
+    border: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+a:hover {
+    outline: none;
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+
+/* 清除表单相关默认样式 */
+
+input,
+textarea,
+select,
+button {
+    outline: none;
+    resize: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+}
+
+input:focus,
+textarea:focus,
+button,
+a,
+select {
+    outline: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+}
+
+
+/*去除input自动填充的黄色背景*/
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px white inset;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+
+select::-ms-expand {
+    display: none;
+}
+
+
+
+
+/* 限制内容文本行数 */
+
+.ovline {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ovline2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    -moz-line-clamp: 2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.ovline3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    -moz-line-clamp: 3;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+/* 内宽 */
+
+.mainbox {
+    margin: 0 auto;
+    width: 1400px;
+    height: 100%;
+}
+
+@media screen and (max-width:1596px) {
+    .mainbox {
+        width: 90%;
+    }
+}

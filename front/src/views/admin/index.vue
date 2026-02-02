@@ -90,8 +90,8 @@ import { BlogListApi, FormApi, UploadApi } from "@/api/index"
 import { ElDialog, ElForm, ElInput, ElFormItem, ElMessage, ElTable, ElTableColumn, ElButton, ElRadioGroup, ElRadio, UploadProps, ElUpload, ElIcon, ElSelect, ElOption } from 'element-plus'
 
 import type { FormInstance, FormRules } from 'element-plus'
-import { Search } from '@element-plus/icons-vue'
-import { Plus } from '@element-plus/icons-vue'
+import { Search, Plus } from '@element-plus/icons-vue'
+
 import TEditor from '@/components/TEditor.vue';
 
 

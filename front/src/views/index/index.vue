@@ -52,6 +52,7 @@
 
 <script lang="ts" setup>
 import Three from "@/components/three.vue";
+
 </script>
 
 
