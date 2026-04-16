@@ -15,17 +15,17 @@ const data = reactive({
 </script>
 <style lang="scss" scoped>
 .home {
-  width:100%;
-  height:100%;
-  position:relative;
-  .left{
-    position:absolute;
-    left:60px;
-    bottom:60px;
-    li{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .left {
+    position: absolute;
+    left: 60px;
+    bottom: 60px;
+    li {
       margin-bottom: 20px;
-      font-size:20px;
-      cursor:pointer;
+      font-size: 20px;
+      cursor: pointer;
     }
   }
 }
